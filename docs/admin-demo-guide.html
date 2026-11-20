@@ -1,1 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio Admin: Demo Guide</title>
+<!-- Source of assets/pdf/Admin-Demo-Guide.pdf. Open in Chrome and print to PDF to rebuild it. -->
+<style>
+  @page { size: A4; margin: 14mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: #17132e; font-size: 10pt; line-height: 1.35; margin: 0; }
+  h1 { font-size: 20pt; margin: 0 0 4px; color: #4528B8; }
+  h2 { font-size: 13pt; margin: 12px 0 4px; color: #4528B8; }
+  p { margin: 4px 0 8px; }
+  .lead { color: #5b5676; font-size: 11.5pt; }
+  .page { page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  ol.steps { padding-left: 20px; margin: 6px 0; }
+  ol.steps li { margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-top: 4px; }
+  th, td { border: 1px solid #d9d5ee; padding: 3px 6px; text-align: left; vertical-align: top; }
+  th { background: #ece8ff; font-size: 8.5pt; text-transform: uppercase; letter-spacing: .04em; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  td.ex { color: #4528B8; white-space: pre-line; }
+  .tip { background: #fff7e0; border-left: 4px solid #f4b63a; padding: 6px 10px; margin: 10px 0; font-size: 10pt; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+  .box { border: 1.5px solid #d9d5ee; border-radius: 10px; padding: 10px; background: #fbfaff; }
+  .box h3 { margin: 0 0 8px; font-size: 10pt; text-transform: uppercase; letter-spacing: .05em; color: #5b5676; }
+  .f { margin-bottom: 7px; }
+  .f b { display: block; font-size: 8.5pt; color: #5b5676; margin-bottom: 1px; }
+  .f div { background: #fff; border: 1px solid #cfcae8; border-radius: 6px; padding: 4px 7px; font-size: 9pt; white-space: pre-line; }
+  .n { display: inline-block; min-width: 17px; height: 17px; line-height: 17px; text-align: center; border-radius: 50%; background: #e4789a; color: #fff; font-size: 8.5pt; font-weight: 700; margin-right: 4px; vertical-align: middle; }
+  .card { border: 1px solid #d9d5ee; border-radius: 12px; overflow: hidden; background: #fff; margin-bottom: 10px; }
+  .card .vis { background: linear-gradient(150deg, #f6d5e0, #fdeef3); padding: 10px 10px 0; height: 120px; overflow: hidden; }
+  .card .vis img { width: 100%; border-radius: 6px 6px 0 0; display: block; }
+  .card .body { padding: 8px 10px 10px; }
+  .card h4 { margin: 0 0 3px; font-size: 12pt; }
+  .chip { display: inline-block; border: 1px solid #d9d5ee; border-radius: 99px; padding: 1px 8px; font-size: 8pt; margin: 2px 2px 0 0; color: #5b5676; }
+  .pg h4 { margin: 0; font-size: 15pt; }
+  .pg .sub { color: #5b5676; font-size: 9pt; margin: 2px 0 6px; }
+  .pg .sec { border-top: 1px solid #e2dff0; padding-top: 6px; margin-top: 8px; }
+  .pg ul { margin: 4px 0 4px 16px; padding: 0; font-size: 9pt; }
+  .btn { display: inline-block; background: #5b3fd6; color: #fff; border-radius: 7px; padding: 3px 9px; font-size: 8.5pt; margin-right: 4px; }
+  .btn.g { background: #fff; color: #17132e; border: 1px solid #cfcae8; }
+  .rows div { display: flex; font-size: 8.5pt; border-bottom: 1px solid #eee; padding: 2px 0; }
+  .rows div span:first-child { width: 80px; color: #5b5676; }
+</style>
+</head>
+<body>
 
+<section class="page">
+  <h1>Portfolio Admin: Demo Guide</h1>
+  <p class="lead">How to add a project to your portfolio from <b>admin.html</b>, and what to write in each field.</p>
+
+  <h2>Add a project in 6 steps</h2>
+  <ol class="steps">
+    <li>Open <b>admin.html</b> on your live site and connect with your GitHub token (one time).</li>
+    <li>Click <b>New project</b>.</li>
+    <li>Fill the top fields: name, short description, technologies, links and card colour.</li>
+    <li>Fill the <b>sections</b>. Each section is one part of the project page. Add blocks inside it: Text, Highlights, Screenshots or Table.</li>
+    <li>Click <b>Preview</b> to see the home page card and the project page.</li>
+    <li>Click <b>Publish</b>. The site updates in about 1 to 2 minutes.</li>
+  </ol>
+  <div class="tip"><b>Good to know:</b> the project at the top of the list is shown as the big &ldquo;Latest project&rdquo; panel on the home page. Use the up and down buttons in &ldquo;Your projects&rdquo; to change the order. The first screenshot of a project is the cover picture.</div>
+
+  <h2>Which field, what to write</h2>
+  <table>
+    <thead><tr><th>Field</th><th>What to write</th><th>Example</th><th>Where it shows</th></tr></thead>
+    <tbody>
+      <tr><td>Project name</td><td>Short name people will see.</td><td class="ex">Online Bookstore</td><td>Card title, big heading of the page</td></tr>
+      <tr><td>Short description</td><td>One or two sentences: what it does.</td><td class="ex">A web store where customers browse books, add them to a cart and pay online.</td><td>Home page card or big panel</td></tr>
+      <tr><td>Intro on the project page</td><td>Optional. Empty = same as short description.</td><td class="ex">A full shopping flow: catalogue, cart, payment and order tracking.</td><td>Line under the page heading</td></tr>
+      <tr><td>Technologies</td><td>Names separated by commas.</td><td class="ex">React, Node.js, MongoDB, Stripe</td><td>Small tags. Card shows the first 4</td></tr>
+      <tr><td>Live site link</td><td>Optional. Full link with https://</td><td class="ex">https://example.com/bookstore</td><td>&ldquo;Open live site&rdquo; button</td></tr>
+      <tr><td>Source code link</td><td>Optional. Full link with https://</td><td class="ex">https://github.com/you/bookstore</td><td>&ldquo;View source code&rdquo; button</td></tr>
+      <tr><td>Card colour</td><td>Click a colour.</td><td class="ex">Pink</td><td>Glow behind the card picture</td></tr>
+      <tr><td>Section title</td><td>Heading of one part of the page.</td><td class="ex">About / Screens / Tech stack</td><td>Big heading on the left. 3 or more sections add a top menu</td></tr>
+      <tr><td>Small line under title</td><td>Optional, a few words.</td><td class="ex">What it is</td><td>Grey line under the section title</td></tr>
+      <tr><td>Block: Text</td><td>Paragraphs. Empty line = new paragraph.</td><td class="ex">Customers can search by title or author...</td><td>Paragraphs in the section</td></tr>
+      <tr><td>Block: Highlights</td><td>One per line: Title: what it does.</td><td class="ex">Cart: add, remove and change quantities.</td><td>Bullet list, title in bold</td></tr>
+      <tr><td>Block: Screenshots</td><td>Pick PNG or JPG files. Add a caption. Choose layout and crop.</td><td class="ex">Home page
+Shopping cart</td><td>Pictures in a browser frame</td></tr>
+      <tr><td>Block: Table</td><td>One per line: Label: value.</td><td class="ex">Frontend: React with hooks</td><td>Two-column table (tech stack)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="page">
+  <h1>Example: Online Bookstore</h1>
+  <p class="lead">Left: what you type in the form. Right: where each part appears on the site. The same numbers match.</p>
+
+  <div class="cols">
+    <div class="box">
+      <h3>The form (what you type)</h3>
+      <div class="f"><b><span class="n">1</span>Project name</b><div>Online Bookstore</div></div>
+      <div class="f"><b><span class="n">2</span>Short description</b><div>A web store where customers browse books, add them to a cart and pay online.</div></div>
+      <div class="f"><b><span class="n">3</span>Technologies</b><div>React, Node.js, Express, MongoDB, Stripe</div></div>
+      <div class="f"><b><span class="n">4</span>Screenshots (first = cover)</b><div>home.png  (caption: Home page)
+cart.png  (caption: Shopping cart)</div></div>
+      <div class="f"><b><span class="n">5</span>Live site link / Source code link</b><div>https://example.com/bookstore
+https://github.com/you/bookstore</div></div>
+      <div class="f"><b><span class="n">6</span>Section 1 title and small line</b><div>About   |   What it is</div></div>
+      <div class="f"><b><span class="n">7</span>Block Text</b><div>Customers can search by title or author, read details and check out with a card.</div></div>
+      <div class="f"><b><span class="n">8</span>Block Highlights</b><div>Cart: add, remove and change quantities.
+Payments: secure checkout with Stripe.</div></div>
+      <div class="f"><b><span class="n">9</span>Section 2: Tech stack, Block Table</b><div>Frontend: React with hooks
+Database: MongoDB</div></div>
+    </div>
+
+    <div>
+      <div class="box">
+        <h3>Home page card</h3>
+        <div class="card">
+          <div class="vis"><span class="n" style="position:absolute;margin:2px">4</span>
+            <img alt="" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23f6f5fb'/%3E%3Crect width='800' height='50' fill='%23E4789A'/%3E%3Ctext x='24' y='33' font-family='Arial' font-size='20' font-weight='700' fill='white'%3EBookNest%3C/text%3E%3Cg%3E%3Crect x='24' y='90' width='170' height='220' rx='10' fill='white' stroke='%23e2dff0'/%3E%3Crect x='212' y='90' width='170' height='220' rx='10' fill='white' stroke='%23e2dff0'/%3E%3Crect x='400' y='90' width='170' height='220' rx='10' fill='white' stroke='%23e2dff0'/%3E%3Crect x='588' y='90' width='170' height='220' rx='10' fill='white' stroke='%23e2dff0'/%3E%3C/g%3E%3C/svg%3E">
+          </div>
+          <div class="body">
+            <h4><span class="n">1</span>Online Bookstore</h4>
+            <p style="font-size:9pt;margin:2px 0 4px"><span class="n">2</span>A web store where customers browse books, add them to a cart and pay online.</p>
+            <span class="n">3</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">+1 more</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="box pg" style="margin-top:10px">
+        <h3>Project page</h3>
+        <h4><span class="n">1</span>Online Bookstore</h4>
+        <p class="sub"><span class="n">2</span>A web store where customers browse books...</p>
+        <span class="btn">Open live site</span><span class="btn g">View source code</span> <span class="n">5</span>
+        <div class="sec"><b><span class="n">6</span>About</b> <span class="sub">What it is</span>
+          <p style="font-size:9pt;margin:4px 0"><span class="n">7</span>Customers can search by title or author...</p>
+          <ul><li><b>Cart.</b> add, remove and change quantities. <span class="n">8</span></li><li><b>Payments.</b> secure checkout with Stripe.</li></ul>
+        </div>
+        <div class="sec"><b><span class="n">9</span>Tech stack</b>
+          <div class="rows"><div><span>Frontend</span><span>React with hooks</span></div><div><span>Database</span><span>MongoDB</span></div></div>
+        </div>
+        <div class="sec"><b>Screens</b> <span class="sub">(your screenshots in browser frames)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><b>Tip:</b> on the admin page, press <b>&ldquo;Fill the form with this sample&rdquo;</b> to see these values inside the real form. Replace every field with your own project and add your own screenshots before you publish.</div>
+</section>
+
+</body>
+</html>
