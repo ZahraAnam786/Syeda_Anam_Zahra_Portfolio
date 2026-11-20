@@ -1,1 +1,272 @@
-
+{
+  "meta": {
+    "title": "Syeda Anam Zahra | Full-Stack Developer",
+    "description": "Syeda Anam Zahra is a full-stack developer in Lahore. She builds web apps with ASP.NET Core, Angular and React, and AI apps with RAG, LLM agents, LangChain, LangGraph and CrewAI."
+  },
+  "profile": {
+    "name": "Syeda Anam Zahra",
+    "role": "Full-stack developer in Lahore",
+    "buildPrefix": "I build",
+    "words": [
+      "web apps",
+      "REST APIs",
+      "real-time systems",
+      "admin dashboards",
+      "AI agents"
+    ],
+    "lead": "I have 3+ years of experience with ASP.NET Core, Angular and React. I also build AI apps with RAG, LLM function calling, agents (LangChain, LangGraph, CrewAI) and fine-tuning.",
+    "cv": "assets/pdf/Resume-SyedaAnamZahra-AI.pdf",
+    "footerText": "Full-stack developer in Lahore, Pakistan. Web apps with ASP.NET Core, Angular and React, and AI apps with agents and RAG."
+  },
+  "links": {
+    "email": "zahraanam55555@gmail.com",
+    "phone": "+923101495507",
+    "phoneShown": "0310-1495507",
+    "linkedin": "https://www.linkedin.com/in/syeda-anam-zahra/",
+    "github": "https://github.com/ZahraAnam786/",
+    "location": "Lahore, Pakistan"
+  },
+  "marquee": [
+    "ASP.NET Core",
+    "C#",
+    "Angular",
+    "React",
+    "SQL Server",
+    "PostgreSQL",
+    "Entity Framework",
+    "CQRS",
+    "Redis",
+    "RabbitMQ",
+    "AWS",
+    "Docker",
+    "RAG",
+    "LLM agents",
+    "LangChain",
+    "LangGraph",
+    "CrewAI",
+    "Fine-tuning"
+  ],
+  "about": {
+    "photo": "",
+    "paragraphs": [
+      "I use ASP.NET Core on the backend, Angular or React on the frontend, and SQL Server or PostgreSQL for data. I work with clean architecture patterns like CQRS, Minimal APIs and layered design.",
+      "I write code that is easy to maintain, I tune database queries, and I work well in agile teams. I also handle CI/CD and deployments on AWS.",
+      "Alongside this, I build AI apps with RAG, LLM function calling, agents and vector databases, using LangChain, LangGraph and CrewAI. I also fine-tune models. I trained in machine learning, deep learning and generative AI through NAVTTC, Corvit and Huawei."
+    ],
+    "stats": [
+      {
+        "value": 3,
+        "suffix": "+",
+        "label": "years of experience"
+      },
+      {
+        "value": 4,
+        "suffix": "",
+        "label": "companies"
+      },
+      {
+        "value": 30,
+        "suffix": "+",
+        "label": "projects built"
+      }
+    ],
+    "facts": [
+      {
+        "label": "Based in",
+        "value": "Lahore, Pakistan"
+      },
+      {
+        "label": "Languages",
+        "value": "English, Urdu"
+      },
+      {
+        "label": "How I work",
+        "value": "Problem-solving, team collaboration, agile sprints, clear communication"
+      }
+    ]
+  },
+  "skills": [
+    {
+      "icon": "uil-brackets-curly",
+      "title": "Frontend developer",
+      "sub": "Angular, React, JavaScript",
+      "open": true,
+      "items": [
+        "Angular",
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Bootstrap",
+        "jQuery",
+        "Redux Toolkit",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "icon": "uil-server-network",
+      "title": "Backend developer",
+      "sub": "ASP.NET Core, C#, Web API",
+      "open": true,
+      "items": [
+        "ASP.NET Core",
+        "ASP.NET MVC",
+        "C#",
+        "Web API",
+        "Minimal API",
+        "Entity Framework Core",
+        "CQRS",
+        "MediatR",
+        "ADO.NET",
+        "Node.js",
+        "Microservices",
+        "Visual Studio",
+        "Crystal Reports"
+      ]
+    },
+    {
+      "icon": "uil-database",
+      "title": "Database",
+      "sub": "SQL Server, PostgreSQL",
+      "open": true,
+      "items": [
+        "SQL Server",
+        "PostgreSQL",
+        "SQL queries",
+        "LINQ",
+        "MongoDB",
+        "DynamoDB",
+        "Firebase",
+        "Appwrite"
+      ]
+    },
+    {
+      "icon": "uil-cloud",
+      "title": "Cloud and DevOps",
+      "sub": "AWS, Docker, CI/CD",
+      "open": true,
+      "items": [
+        "AWS",
+        "AWS Lambda",
+        "Azure Service Bus",
+        "CI/CD pipelines",
+        "Git",
+        "Docker",
+        "Redis",
+        "RabbitMQ"
+      ]
+    },
+    {
+      "icon": "uil-processor",
+      "title": "AI and generative AI",
+      "sub": "RAG, agents, LangChain, LangGraph, CrewAI",
+      "open": true,
+      "items": [
+        "Python",
+        "Machine Learning",
+        "Deep Learning",
+        "Computer Vision",
+        "Neural Networks",
+        "scikit-learn",
+        "LLMs",
+        "Prompt engineering",
+        "RAG",
+        "Function calling",
+        "AI agents",
+        "Fine-tuning",
+        "MCP",
+        "LangChain",
+        "LangGraph",
+        "CrewAI",
+        "Embeddings",
+        "ChromaDB",
+        "Gemini API"
+      ]
+    },
+    {
+      "icon": "uil-wrench",
+      "title": "Tools",
+      "sub": "Visual Studio, GitHub, Cursor, Claude",
+      "open": false,
+      "items": [
+        "Visual Studio",
+        "VS Code",
+        "GitHub",
+        "ClickUp",
+        "Crystal Reports",
+        "GitHub Copilot",
+        "Cursor",
+        "Claude",
+        "Codex",
+        "ChatGPT",
+        "OpenAI API"
+      ]
+    }
+  ],
+  "experience": {
+    "work": [
+      {
+        "when": "Apr 2026 – Present",
+        "title": "Insignia Business Solutions",
+        "role": "ASP.NET Core Developer (Angular)",
+        "text": ""
+      },
+      {
+        "when": "Oct 2025 – Mar 2026",
+        "title": "Pace Tech",
+        "role": "ASP.NET Core Developer",
+        "text": ""
+      },
+      {
+        "when": "Jun 2023 – Jul 2025",
+        "title": "Bylitica (PayPeople)",
+        "role": "ASP.NET Core / React Developer",
+        "text": ""
+      },
+      {
+        "when": "Nov 2022 – Feb 2023",
+        "title": "DWP Company",
+        "role": "ASP.NET Developer Intern",
+        "text": ""
+      }
+    ],
+    "education": [
+      {
+        "when": "Training",
+        "title": "AI course",
+        "role": "NAVTTC, Corvit and Huawei",
+        "text": "Hands-on training in machine learning, deep learning, generative AI, MCP and RAG."
+      },
+      {
+        "when": "2018 – 2022",
+        "title": "BSCS, Computer Science",
+        "role": "Punjab University, Lahore",
+        "text": ""
+      },
+      {
+        "when": "2015 – 2017",
+        "title": "ICS (Physics)",
+        "role": "BISE Lahore",
+        "text": ""
+      }
+    ]
+  },
+  "projectsIntro": "From a real-time chat app to a team of AI agents. Open a project to see its screens and details.",
+  "contact": {
+    "title": "Say hello",
+    "lead": "Have a project or a role in mind? Send me an email and tell me about it."
+  },
+  "labels": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "portfolio": "Projects",
+    "contact": "Contact",
+    "seeProjects": "See my projects",
+    "downloadCv": "Download CV",
+    "tabWork": "Work",
+    "tabEdu": "Education",
+    "footerNote": "Built with plain HTML, CSS and JavaScript."
+  }
+}

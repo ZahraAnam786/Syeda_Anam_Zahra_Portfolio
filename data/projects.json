@@ -1,0 +1,833 @@
+{
+  "projects": [
+    {
+      "id": "multi-agent-planner",
+      "title": "Multi-Agent Event Planning Assistant",
+      "summary": "A multi-agent event planner built with CrewAI and Google Gemini. An Event Manager agent delegates to four specialists (venue, catering, budget and schedule). The agents work through search tools, and plain Python code re-checks the final plan. It comes with a FastAPI backend and a responsive web interface with light and dark modes.",
+      "lead": "An AI planning team that finds the venue and menu, prices the whole event, builds the day's agenda, and double-checks every detail before calling the plan ready.",
+      "tech": [
+        "Python",
+        "CrewAI",
+        "Google Gemini",
+        "FastAPI",
+        "Uvicorn",
+        "HTML, CSS and JavaScript"
+      ],
+      "tint": "#5B3FD6",
+      "links": {
+        "live": "",
+        "code": ""
+      },
+      "cover": [
+        {
+          "src": "assets/img/agent-planner-home-1440.jpg",
+          "label": "Light theme",
+          "crop": "plain",
+          "w": 1440,
+          "h": 900,
+          "alt": "Multi-agent Event Planner web app with the event details form, a live cost estimate and the planning team of five agents"
+        },
+        {
+          "src": "assets/img/agent-planner-plan-dark-1440.jpg",
+          "label": "Dark theme",
+          "crop": "fit-top",
+          "w": 1440,
+          "h": 1442,
+          "alt": "The same Event Planner web app in the dark theme"
+        }
+      ],
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Overview",
+          "sub": "What it does",
+          "icon": "uil-info-circle",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Planning even a one-day event means matching a venue, meals, equipment, a budget and a timetable. This project automates that with a team of AI agents."
+            },
+            {
+              "type": "p",
+              "text": "You enter the city, date, number of guests, budget, hours, vegetarian meals and equipment needs. An Event Manager agent then delegates the work to four specialist agents:"
+            },
+            {
+              "type": "points",
+              "items": [
+                {
+                  "title": "Venue Specialist",
+                  "text": "Finds venues with enough capacity, the right facilities and availability on that date."
+                },
+                {
+                  "title": "Catering Specialist",
+                  "text": "Picks standard and vegetarian meal packages that meet their minimum order sizes."
+                },
+                {
+                  "title": "Budget Analyst",
+                  "text": "Prices the venue, meals and equipment rentals, adds a 10% contingency, and checks the total against the budget."
+                },
+                {
+                  "title": "Schedule Planner",
+                  "text": "Builds a timed agenda that fits inside the event window with no overlaps."
+                }
+              ]
+            },
+            {
+              "type": "shots",
+              "layout": "one",
+              "items": [
+                {
+                  "src": "assets/img/agent-planner-home.png",
+                  "caption": "Event form, live estimate and the planning team",
+                  "alt": "Event Planner web app with the event details form, a live cost estimate bar and the five agents of the planning team",
+                  "w": 2880,
+                  "h": 1800,
+                  "crop": "plain"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "app",
+          "title": "The app",
+          "sub": "Three ways to plan",
+          "icon": "uil-desktop",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Quick check finds the lowest-cost plan instantly, with no AI. Create plan runs the full agent team. Build it yourself lets you pick your own venue and menus and see the quote and checks update live."
+            },
+            {
+              "type": "shots",
+              "layout": "grid",
+              "items": [
+                {
+                  "src": "assets/img/agent-planner-plan.png",
+                  "caption": "Plan result with quote and checks",
+                  "alt": "A finished plan with an itemized quote showing subtotal, 10% contingency, total and money left over, next to a summary of how the plan was checked",
+                  "w": 2880,
+                  "h": 2884,
+                  "crop": "plain"
+                },
+                {
+                  "src": "assets/img/agent-planner-plan-dark.png",
+                  "caption": "Plan result in dark mode",
+                  "alt": "The same finished plan shown in the dark theme",
+                  "w": 2880,
+                  "h": 2884,
+                  "crop": "plain"
+                }
+              ]
+            },
+            {
+              "type": "shots",
+              "layout": "one",
+              "items": [
+                {
+                  "src": "assets/img/agent-planner-build.png",
+                  "caption": "Build it yourself",
+                  "alt": "Build it yourself mode with venue and menu options to pick from and an editable agenda that checks for overlaps",
+                  "w": 2880,
+                  "h": 4000,
+                  "crop": "plain"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "guardrails",
+          "title": "Guardrails",
+          "sub": "The AI does not approve its own work",
+          "icon": "uil-shield-check",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The key design idea is that the AI is not trusted to approve its own work. The important rules are enforced in code:"
+            },
+            {
+              "type": "points",
+              "items": [
+                {
+                  "text": "All money is calculated with exact decimal arithmetic and ROUND_HALF_UP rounding."
+                },
+                {
+                  "text": "The search tools reject any city or date that differs from the request, so an agent cannot invent one."
+                },
+                {
+                  "text": "The manager gets at most three budget revisions."
+                },
+                {
+                  "text": "A plan is only labelled \"feasible\" after Python re-validates the final selection."
+                },
+                {
+                  "text": "A plan is only called \"impossible\" if an exhaustive search of every venue and menu combination confirms it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "features",
+          "title": "Features",
+          "icon": "uil-list-ul",
+          "blocks": [
+            {
+              "type": "points",
+              "items": [
+                {
+                  "text": "Multi-agent team with a manager that delegates to specialists (CrewAI hierarchical process)"
+                },
+                {
+                  "text": "Instant \"Quick check\" mode that finds the lowest-cost plan with no AI"
+                },
+                {
+                  "text": "\"Create plan\" mode that runs the full agent team"
+                },
+                {
+                  "text": "\"Build it yourself\" mode to pick your own venue and menus and see the quote and checks update live"
+                },
+                {
+                  "text": "Itemized quote with subtotal, 10% contingency, total and money left over"
+                },
+                {
+                  "text": "Editable agenda with validation of times, the event window and overlaps"
+                },
+                {
+                  "text": "Live estimate bar showing the lowest possible cost against your budget"
+                },
+                {
+                  "text": "Light and dark themes, and print or save as PDF"
+                },
+                {
+                  "text": "Six built-in test scenarios, including impossible ones (venue too small, no availability, too much equipment requested)"
+                },
+                {
+                  "text": "Every run is logged with every tool call, delegation and the final report, as evidence of how the plan was reached"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "stack",
+          "title": "Tech stack",
+          "icon": "uil-layer-group",
+          "blocks": [
+            {
+              "type": "rows",
+              "items": [
+                {
+                  "label": "Language",
+                  "value": "Python 3.11+"
+                },
+                {
+                  "label": "AI agents",
+                  "value": "CrewAI (hierarchical process, manager agent, custom tools)"
+                },
+                {
+                  "label": "LLM",
+                  "value": "Google Gemini (via LiteLLM model IDs)"
+                },
+                {
+                  "label": "Backend and API",
+                  "value": "FastAPI with interactive API docs, served by Uvicorn"
+                },
+                {
+                  "label": "Frontend",
+                  "value": "Plain HTML, CSS and JavaScript in a single page, with no framework"
+                },
+                {
+                  "label": "Data",
+                  "value": "CSV and JSON datasets (12 venues, 9 catering packages, 9 equipment records)"
+                },
+                {
+                  "label": "Tooling",
+                  "value": "uv for dependency management, python-dotenv for configuration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "shows",
+          "title": "What this project shows",
+          "nav": false,
+          "blocks": [
+            {
+              "type": "points",
+              "items": [
+                {
+                  "text": "Designing agentic AI systems with delegation, tools and guardrails"
+                },
+                {
+                  "text": "Combining LLM reasoning with deterministic validation, so results can be verified"
+                },
+                {
+                  "text": "Building an API-first backend with background jobs and live progress polling"
+                },
+                {
+                  "text": "Writing a clean, accessible interface without a front-end framework"
+                },
+                {
+                  "text": "Auditability: structured logs that prove what each agent did"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "added": "2026-11-18"
+    },
+    {
+      "id": "event-planner",
+      "title": "Event Planner",
+      "summary": "A reservation platform with three views for Admin, Businessman and Client roles. Clients browse venues, salons, catering and photographers, and book based on availability.",
+      "lead": "A reservation platform with three views: Admin, Vendor and Client. Businesses are listed in four categories: venue, salon, catering and photography. Clients browse them and book based on availability.",
+      "tech": [
+        "ASP.NET MVC",
+        "Ajax",
+        "ADO.NET",
+        "Stored procedures",
+        "jQuery",
+        "Repository pattern"
+      ],
+      "tint": "#E4789A",
+      "links": {
+        "live": "",
+        "code": ""
+      },
+      "cover": [
+        {
+          "src": "assets/img/clientview.png",
+          "label": "Event Planner, venues",
+          "crop": "c62",
+          "w": 1366,
+          "h": 768,
+          "alt": "Event Planner client page showing venue cards with price per plate and rating"
+        }
+      ],
+      "sections": [
+        {
+          "id": "account",
+          "title": "Account",
+          "sub": "Login and sign up",
+          "icon": "uil-user",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Every user first creates an account for their role (Vendor or Client). The Admin can only log in."
+            },
+            {
+              "type": "shots",
+              "layout": "grid",
+              "items": [
+                {
+                  "src": "assets/img/reg.png",
+                  "caption": "Sign up page",
+                  "alt": "Event Planner: sign up page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                },
+                {
+                  "src": "assets/img/singinlap.png",
+                  "caption": "Login page",
+                  "alt": "Event Planner: login page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "admin",
+          "title": "Admin site",
+          "sub": "Request notifications",
+          "icon": "uil-setting",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "When a vendor adds business details in any category and clicks Upload, a request goes to the Admin to verify the business. When the Admin accepts the request, the data becomes available on the Client site. If the Admin discards it, clients do not see it."
+            },
+            {
+              "type": "shots",
+              "layout": "one",
+              "items": [
+                {
+                  "src": "assets/img/NotReq.png",
+                  "caption": "Request notification page",
+                  "alt": "Event Planner: request notification page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                }
+              ]
+            },
+            {
+              "type": "shots",
+              "layout": "grid",
+              "items": [
+                {
+                  "src": "assets/img/ReqAccept.png",
+                  "caption": "Request details page",
+                  "alt": "Event Planner: request details page",
+                  "w": 1280,
+                  "h": 1024,
+                  "crop": "sq"
+                },
+                {
+                  "src": "assets/img/ReqAccept2.png",
+                  "caption": "Request details page",
+                  "alt": "Event Planner: request details page",
+                  "w": 1280,
+                  "h": 1024,
+                  "crop": "sq"
+                }
+              ]
+            }
+          ],
+          "navLabel": "Admin"
+        },
+        {
+          "id": "vendor",
+          "title": "Vendor site",
+          "sub": "Create, my uploads, reservation requests, upcoming events",
+          "icon": "uil-store",
+          "blocks": [
+            {
+              "type": "points",
+              "items": [
+                {
+                  "title": "Create",
+                  "text": "The vendor adds business details in any category and clicks Upload. The request goes to the Admin to verify the business."
+                },
+                {
+                  "title": "My uploads",
+                  "text": "The vendor sees all their uploads and can edit or delete them."
+                },
+                {
+                  "title": "Reservation requests",
+                  "text": "The vendor sees reservation requests and accepts or discards them according to available dates."
+                },
+                {
+                  "title": "Upcoming events",
+                  "text": "The vendor sees the upcoming events from the requests they accepted."
+                }
+              ]
+            },
+            {
+              "type": "shots",
+              "layout": "grid",
+              "items": [
+                {
+                  "src": "assets/img/createlap.png",
+                  "caption": "Create page",
+                  "alt": "Event Planner: create page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                },
+                {
+                  "src": "assets/img/createlap2.png",
+                  "caption": "Create page",
+                  "alt": "Event Planner: create page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                },
+                {
+                  "src": "assets/img/createlap3.png",
+                  "caption": "Create page",
+                  "alt": "Event Planner: create page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                },
+                {
+                  "src": "assets/img/MyUpload.png",
+                  "caption": "My uploads page",
+                  "alt": "Event Planner: my uploads page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                },
+                {
+                  "src": "assets/img/ReserveReqlap.png",
+                  "caption": "Reservation request page",
+                  "alt": "Event Planner: reservation request page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                },
+                {
+                  "src": "assets/img/upcominglap.png",
+                  "caption": "Upcoming events page",
+                  "alt": "Event Planner: upcoming events page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                }
+              ]
+            }
+          ],
+          "navLabel": "Vendor"
+        },
+        {
+          "id": "client",
+          "title": "Client site",
+          "sub": "Categories, notifications, my booking",
+          "icon": "uil-users-alt",
+          "blocks": [
+            {
+              "type": "points",
+              "items": [
+                {
+                  "title": "Categories",
+                  "text": "The client sees all venues, salons, catering and photographers, and reserves according to their choice."
+                },
+                {
+                  "title": "Notifications",
+                  "text": "The client sees whether the vendor accepted or discarded their reservation request."
+                },
+                {
+                  "title": "My booking",
+                  "text": "The client sees the events they booked."
+                }
+              ]
+            },
+            {
+              "type": "shots",
+              "layout": "one",
+              "items": [
+                {
+                  "src": "assets/img/clientview.png",
+                  "caption": "Venue category page",
+                  "alt": "Event Planner: venue category page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                }
+              ]
+            },
+            {
+              "type": "shots",
+              "layout": "grid",
+              "items": [
+                {
+                  "src": "assets/img/reservebutton.png",
+                  "caption": "Venue detail page",
+                  "alt": "Event Planner: venue detail page",
+                  "w": 1280,
+                  "h": 1024,
+                  "crop": "sq"
+                },
+                {
+                  "src": "assets/img/Reqcreate.png",
+                  "caption": "Reservation request create page",
+                  "alt": "Event Planner: reservation request create page",
+                  "w": 1280,
+                  "h": 1024,
+                  "crop": "sq"
+                },
+                {
+                  "src": "assets/img/notify.png",
+                  "caption": "Notifications page",
+                  "alt": "Event Planner: notifications page",
+                  "w": 1280,
+                  "h": 1024,
+                  "crop": "sq"
+                },
+                {
+                  "src": "assets/img/mybooking.png",
+                  "caption": "My booking page",
+                  "alt": "Event Planner: my booking page",
+                  "w": 1280,
+                  "h": 1024,
+                  "crop": "sq"
+                }
+              ]
+            }
+          ],
+          "navLabel": "Client"
+        }
+      ],
+      "added": "2026-11-18"
+    },
+    {
+      "id": "chitchat",
+      "title": "ChitChat",
+      "summary": "A real-time chat app with authenticated users and unread-message tracking, powered by SignalR.",
+      "lead": "A real-time chat app with authenticated users and unread-message tracking, powered by SignalR. Every registered user is listed, so you can search for anyone and start a chat.",
+      "tech": [
+        "React",
+        "Redux",
+        "SignalR",
+        "JWT",
+        "EF Core",
+        "C#",
+        "Layered architecture",
+        "Custom middleware"
+      ],
+      "tint": "#4DB6E8",
+      "links": {
+        "live": "",
+        "code": ""
+      },
+      "cover": [
+        {
+          "src": "assets/img/chatFirst.PNG",
+          "label": "ChitChat, conversation",
+          "crop": "screen",
+          "w": 1366,
+          "h": 768,
+          "alt": "ChitChat conversation between two users, with an online users list on the left"
+        }
+      ],
+      "sections": [
+        {
+          "id": "account",
+          "title": "Account",
+          "sub": "Sign up and sign in",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "When a user first enters the website, they create an account. If they already have an account, they just log in."
+            },
+            {
+              "type": "shots",
+              "layout": "grid",
+              "items": [
+                {
+                  "src": "assets/img/ChatReg.PNG",
+                  "caption": "Sign up page",
+                  "alt": "ChitChat: sign up page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                },
+                {
+                  "src": "assets/img/chatLogin.PNG",
+                  "caption": "Sign in page",
+                  "alt": "ChitChat: sign in page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "chat",
+          "title": "Chat",
+          "sub": "Conversations",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "All users of the website are listed, so a user can chat with anyone and search for any user."
+            },
+            {
+              "type": "shots",
+              "layout": "one",
+              "items": [
+                {
+                  "src": "assets/img/chatFirst.PNG",
+                  "caption": "Chat page",
+                  "alt": "ChitChat: chat page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "added": "2026-11-18"
+    },
+    {
+      "id": "admin-panel",
+      "title": "Admin Panel",
+      "summary": "An admin panel for creating employees, managing their details and viewing employee reports.",
+      "lead": "An admin panel for creating employees, managing their details and viewing employee reports. The Admin can add, edit and delete employee details and see the full employee list.",
+      "tech": [
+        "ASP.NET MVC",
+        "ADO.NET",
+        "C#",
+        "SQL Server",
+        "Stored procedures",
+        "Class library",
+        "Ajax",
+        "jQuery"
+      ],
+      "tint": "#8B7CF6",
+      "links": {
+        "live": "",
+        "code": ""
+      },
+      "cover": [
+        {
+          "src": "assets/img/Admin1.JPG",
+          "label": "Admin Panel, employees",
+          "crop": "screen",
+          "w": 1366,
+          "h": 768,
+          "alt": "Admin Panel employee table with search, edit, delete and report actions"
+        }
+      ],
+      "sections": [
+        {
+          "id": "list",
+          "title": "Employee list",
+          "sub": "All employees in one table",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The Admin sees every employee in a table and can edit or delete a record, or open its report."
+            },
+            {
+              "type": "shots",
+              "layout": "one",
+              "items": [
+                {
+                  "src": "assets/img/Admin1.JPG",
+                  "caption": "Employee list page",
+                  "alt": "Admin Panel: employee list page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "form",
+          "title": "Employee form",
+          "sub": "Add and edit employee details",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The Admin adds new employees and edits their details with the employee form."
+            },
+            {
+              "type": "shots",
+              "layout": "grid",
+              "items": [
+                {
+                  "src": "assets/img/admin2.JPG",
+                  "caption": "Employee form page",
+                  "alt": "Admin Panel: employee form page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                },
+                {
+                  "src": "assets/img/admin3.JPG",
+                  "caption": "Employee form page",
+                  "alt": "Admin Panel: employee form page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                },
+                {
+                  "src": "assets/img/admin4.JPG",
+                  "caption": "Employee form page",
+                  "alt": "Admin Panel: employee form page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "added": "2026-11-18"
+    },
+    {
+      "id": "react-projects",
+      "title": "Quran WebApp and other React apps",
+      "summary": "A React application that reads Quran content from an ASP.NET MVC API. The detail page also shows a to-do list app.",
+      "lead": "Two React apps: a Quran website and a to-do list.",
+      "tech": [
+        "React",
+        "React Hooks",
+        "Axios",
+        "Web API"
+      ],
+      "tint": "#2BB5A0",
+      "links": {
+        "live": "",
+        "code": ""
+      },
+      "cover": [
+        {
+          "src": "assets/img/quranweb.PNG",
+          "label": "Quran WebApp",
+          "crop": "screen",
+          "w": 1366,
+          "h": 768,
+          "alt": "Quran WebApp with a searchable list of surahs and Arabic verses with Urdu translation"
+        }
+      ],
+      "sections": [
+        {
+          "id": "quran",
+          "title": "Quran website",
+          "sub": "Surah list, translation and search",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The site lists all surahs. Click a surah to read it with its translation. Search is included. The API was built in ASP.NET MVC and used in the React app with Axios."
+            },
+            {
+              "type": "shots",
+              "layout": "one",
+              "items": [
+                {
+                  "src": "assets/img/quranweb.PNG",
+                  "caption": "Quran web page",
+                  "alt": "React projects: quran web page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "todo",
+          "title": "To-do list",
+          "sub": "Add and manage todos",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Add todos, see the whole list and manage them."
+            },
+            {
+              "type": "shots",
+              "layout": "one",
+              "items": [
+                {
+                  "src": "assets/img/ToDoList.PNG",
+                  "caption": "To-do list page",
+                  "alt": "React projects: to-do list page",
+                  "w": 1366,
+                  "h": 768,
+                  "crop": "screen"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "added": "2026-11-18"
+    }
+  ]
+}
