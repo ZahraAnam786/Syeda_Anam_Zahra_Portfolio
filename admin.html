@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio admin</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#5B3FD6">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%235B3FD6'/%3E%3Ctext x='32' y='43' font-size='30' font-weight='800' text-anchor='middle' fill='white' font-family='Arial,sans-serif'%3ESA%3C/text%3E%3C/svg%3E">
+    <script>try{var t=localStorage.getItem('selected-theme');if(t!=='dark'&&t!=='light'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t}catch(e){}</script>
+    <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body class="admin">
+    <header class="admin_bar">
+        <div class="admin_wrap admin_bar_in">
+            <strong class="admin_brand">Portfolio admin</strong>
+            <div class="admin_bar_btns">
+                <a class="btn btn-ghost btn--sm" href="index.html#portfolio" target="_blank" rel="noopener">View site</a>
+                <button class="icon-btn" id="theme-button" type="button" aria-label="Switch to dark theme"><i class="uil uil-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin_wrap">
+        <p id="status" class="status" role="status" aria-live="polite" hidden></p>
+
+        <!--==================== CONNECT ====================-->
+        <section class="panel" id="connect">
+            <h1 class="panel_title">Connect to GitHub</h1>
+            <form id="connect-form" class="aform" autocomplete="off">
+                <label class="field">
+                    <span class="field_label">GitHub token</span>
+                    <input id="token" type="password" required spellcheck="false" autocomplete="off" placeholder="github_pat_...">
+                </label>
+                <label class="field">
+                    <span class="field_label">Repository</span>
+                    <input id="repo" type="text" required value="ZahraAnam786/Syeda-Anam-Zahra-Portfolio" spellcheck="false">
+                </label>
+                <label class="check"><input id="remember" type="checkbox"> Remember the token on this device</label>
+                <div><button class="btn btn-primary" type="submit" id="connect-btn">Connect</button></div>
+            </form>
+            <details class="help">
+                <summary>How do I get a token? (one time, 2 minutes)</summary>
+                <ol>
+                    <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+                    <li>Name: <b>portfolio-admin</b>. Expiration: pick 90 days or more.</li>
+                    <li>Repository access: <b>Only select repositories</b>, then choose this portfolio repository.</li>
+                    <li>Permissions &rarr; Repository permissions &rarr; <b>Contents: Read and write</b>.</li>
+                    <li>Click Generate token, copy it and paste it above. Never share it with anyone.</li>
+                </ol>
+            </details>
+        </section>
+
+        <!--==================== WORKSPACE (after connecting) ====================-->
+        <div id="workspace" hidden>
+            <section class="panel">
+                <div class="panel_head">
+                    <h2 class="panel_title">Connected</h2>
+                    <button class="btn btn-ghost btn--sm" id="disconnect" type="button">Disconnect</button>
+                </div>
+                <p class="muted" id="connected-to"></p>
+            </section>
+
+            <div class="tabs admin_tabs" role="tablist" aria-label="What to edit">
+                <button class="tab" type="button" role="tab" id="atab-projects" aria-selected="true" aria-controls="tab-projects"><i class="uil uil-folder"></i>Projects</button>
+                <button class="tab" type="button" role="tab" id="atab-site" aria-selected="false" aria-controls="tab-site" tabindex="-1"><i class="uil uil-setting"></i>Site content</button>
+            </div>
+
+            <div id="tab-projects" role="tabpanel" aria-labelledby="atab-projects">
+            <section class="panel">
+                <div class="panel_head">
+                    <h2 class="panel_title">Your projects</h2>
+                    <button class="btn btn-primary btn--sm" id="new-project" type="button"><i class="uil uil-plus"></i>New project</button>
+                </div>
+                <p class="muted">The newest project (first in the list) is shown as the big &ldquo;Latest project&rdquo; panel on the home page. You can edit or delete any project.</p>
+                <ul class="plist" id="project-list"></ul>
+                <p class="muted" id="list-empty" hidden>No project yet. Click &ldquo;New project&rdquo; to add your first one.</p>
+            </section>
+
+            <form class="panel aform" id="project-form" autocomplete="off" novalidate hidden>
+                <h2 class="panel_title" id="form-title">New project</h2>
+                <p class="field_hint">Need an example? The sample and the <b>Download demo (PDF)</b> button are at the <a href="#sample">bottom of this page</a>. <button class="mini" type="button" id="show-help">What is required?</button></p>
+
+                <label class="field">
+                    <span class="field_label">Project name *</span>
+                    <input id="f-title" type="text" maxlength="80" required>
+                </label>
+
+                <label class="field">
+                    <span class="field_label">Short description *</span>
+                    <span class="field_hint">One or two sentences. Shown on the home page (card or big panel).</span>
+                    <textarea id="f-summary" rows="3" maxlength="400" required></textarea>
+                </label>
+
+                <label class="field">
+                    <span class="field_label">Intro on the project page <em class="opt">optional</em></span>
+                    <span class="field_hint">Optional. The line under the big heading of the project page. Leave empty to reuse the short description.</span>
+                    <textarea id="f-lead" rows="2"></textarea>
+                </label>
+
+                <label class="field">
+                    <span class="field_label">Technologies <em class="opt">optional</em></span>
+                    <span class="field_hint">Separate with commas, like <code>React, Node.js, MongoDB</code>. The card shows the first 4.</span>
+                    <input id="f-tech" type="text">
+                </label>
+
+                <div class="grid2">
+                    <label class="field">
+                        <span class="field_label">Live site link <em class="opt">optional</em></span>
+                        <input id="f-live" type="url" placeholder="https://">
+                    </label>
+                    <label class="field">
+                        <span class="field_label">Source code link <em class="opt">optional</em></span>
+                        <input id="f-code" type="url" placeholder="https://github.com/...">
+                    </label>
+                </div>
+
+                <div class="field">
+                    <span class="field_label">Card colour <em class="opt">optional</em></span>
+                    <div class="swatches" id="swatches"></div>
+                </div>
+
+                <div class="field">
+                    <span class="field_label">Sections of the project page *</span>
+                    <span class="field_hint">Each section has a title and a few blocks: text, highlights, screenshots or a table. The first screenshot of the project is the cover picture on the home page.</span>
+                    <div id="sections" class="sections"></div>
+                    <div><button class="btn btn-ghost btn--sm" type="button" id="add-section"><i class="uil uil-plus"></i>Add section</button></div>
+                </div>
+
+                <div class="aactions">
+                    <button class="btn btn-ghost" type="button" id="preview-btn">Preview</button>
+                    <button class="btn btn-primary" type="submit" id="publish-btn">Publish</button>
+                    <button class="btn btn-ghost" type="button" id="cancel-btn">Cancel</button>
+                </div>
+            </form>
+
+            <section class="preview" id="preview" hidden>
+                <h2 class="panel_title">Preview</h2>
+                <p class="muted">The big panel (when this is the newest project), the card (when newer projects exist) and the project page.</p>
+                <div id="preview-feature"></div>
+                <div class="cards cards--preview" id="preview-card"></div>
+                <div class="preview_page" id="preview-page"></div>
+            </section>
+
+            <!--==================== SAMPLE + DEMO (at the end, below the form) ====================-->
+            <details class="panel sample" id="sample" open>
+                <summary class="panel_title">Sample: what to write in each field</summary>
+                <p class="muted">Look at this example while you fill the form. The table says what each field is for and where it shows up on the site.</p>
+                <p class="demo_row">
+                    <a class="btn btn-primary btn--sm" href="assets/pdf/Admin-Demo-Guide.pdf" download="Portfolio-Admin-Demo-Guide.pdf"><i class="uil uil-download-alt"></i>Download demo (PDF)</a>
+                    <button class="btn btn-ghost btn--sm" type="button" id="fill-sample">Fill the form with this sample</button>
+                </p>
+                <div class="table_wrap">
+                    <table class="sample_table">
+                        <thead><tr><th>Field</th><th>What to write</th><th>Example</th><th>Where it shows</th></tr></thead>
+                        <tbody id="sample-rows"></tbody>
+                    </table>
+                </div>
+                <p class="field_hint">&ldquo;Fill the form&rdquo; only fills the text so you can see how it looks. Change everything to your own project and add your own screenshots. Do not publish the sample.</p>
+                <h3 class="sample_h">How the sample looks on the site</h3>
+                <div class="sample_feature" id="sample-feature"></div>
+                <div class="cards cards--preview" id="sample-card"></div>
+                <div class="preview_page sample_page" id="sample-page"></div>
+            </details>
+            </div>
+
+            <!--==================== SITE CONTENT (drawn by admin-site.js) ====================-->
+            <div id="tab-site" role="tabpanel" aria-labelledby="atab-site" hidden>
+                <section class="panel">
+                    <h2 class="panel_title">Site content</h2>
+                    <p class="muted">Everything on the home page is edited here: name, rotating words, photo, CV, About, Skills, Experience, Contact and the order of the sections. Change what you want, click <b>Preview</b> to see the page, then <b>Save and publish</b>. Use the arrows to swap the order of anything.</p>
+                    <p class="muted" id="site-loading">Loading...</p>
+                </section>
+                <details class="panel sample" id="site-sample" hidden>
+                    <summary class="panel_title">Guide: what to write in each field, and what is on the site now</summary>
+                    <p class="muted">Everything that is already on your site is loaded into the boxes below, so you can change it or remove it. To hide a part, clear its box (or click <b>Remove</b> on a list item). The last column shows what the site has right now.</p>
+                    <div class="table_wrap">
+                        <table class="sample_table">
+                            <thead><tr><th>Field</th><th>What to write</th><th>Example</th><th>Where it shows</th><th>On the site now</th></tr></thead>
+                            <tbody id="site-sample-rows"></tbody>
+                        </table>
+                    </div>
+                </details>
+                <form id="site-form" class="aform" autocomplete="off" novalidate hidden>
+                    <div id="site-editor" class="site_editor"></div>
+                    <div class="aactions">
+                        <button class="btn btn-ghost" type="button" id="site-preview">Preview</button>
+                        <button class="btn btn-primary" type="submit" id="site-save">Save and publish</button>
+                        <button class="btn btn-ghost" type="button" id="site-reload">Discard changes</button>
+                    </div>
+                </form>
+                <section class="preview" id="site-preview-box" hidden>
+                    <h2 class="panel_title">Preview of the home page</h2>
+                    <p class="muted">This is how the page looks with your changes. Nothing is saved until you click &ldquo;Save and publish&rdquo;.</p>
+                    <div class="preview_page" id="site-preview-page"></div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/projects.js"></script>
+    <script src="assets/js/model.js"></script>
+    <script src="assets/js/github.js"></script>
+    <script src="assets/js/admin.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script src="assets/js/admin-site.js"></script>
+</body>
+
+</html>
